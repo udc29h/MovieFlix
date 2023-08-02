@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="slider.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <a href="https://fontmeme.com/netflix-font/"><img src="https://fontmeme.com/permalink/230708/5cec73c7b50ba397b220988778596691.png" alt="netflix-font" border="0"></a>
+            </div>
+            <div class="search-bar">
+                <input type="search" id="search" autofocus autocomplete="off" placeholder="Search...">
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="homeSlider">
+            <div class="container">
+                <div class="slides">
+                    <div class="slide"><img src="img/cherry.jpg" alt="1"></div>
+                    <div class="slide"><img src="img/image1.jpg" alt="2"></div>
+                    <div class="slide"><img src="img/image2.jpg" alt="3"></div>
+                    <div class="slide"><img src="img/image3.jpg" alt="4"></div>
+                </div>
+                <div class="slideControls">
+                    <button id="prevBtn"> < </button>
+                    <button id="nxtBtn">></button>
+                </div>
+            </div>
+        </div>
+        <div class="TilesContainer">
+            <div class="row" id="moviebox"></div>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+    <script src="slider.js"></script>
+    <script src="navbarScrollOpacity.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+body{
+  overflow-x: hidden;
+  height: fit-content;
+  width: 100vw;
+  background-color: #272727;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.main{
+  position: relative;
+}
+
+.homeSlider{
+    bottom: 0px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1212129d;
+  padding: 24px;
+  color: white;
+  backdrop-filter: blur(10px);
+  height: 15px;
+  opacity: 1;
+}
+.logo a{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.search-bar input {
+  border: none;
+  height: 30px;
+  width: 200px;
+  border-radius: 3px;
+  padding-left: 5px;
+  background-color: red;
+  color: white;
+  outline: none;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+}
+
+
+.tilesContainer {
+  background-color: #272727;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 25%;
+  padding-right:1%;
+  margin-right: 0;
+  margin-top: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  overflow: hidden;
+  position: relative;
+  /* border: 2px solid red; */
+  /* margin: 5px; */
+}
+
+.box img {
+  width: 200px;
+  border-radius: 4px;
+}
+
+.box:hover .overlay {
+  height: 100px;
+  z-index: 99;
+  top: 0;
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+  transition-duration: 300ms;
+}
+
+.overlay {
+  position: absolute;
+  top: -120px;
+  background-color: #ffffff46;
+  width: 190px;
+  height: 100px;
+  /* overflow: hidden; */
+  overflow: scroll;
+  padding: 5px;
+  backdrop-filter: blur(13px);
+  border-radius: 3px;
+  
+}
+
+#moviebox {
+  position: relative;
+  height:100%;
+  width:100%;
+  display: flex;
+  justify-content: space-around;
+  /* border: 2px solid white; */
+  overflow: hidden;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  /* padding: 5px; */
+}
+
+#search {
+  border: none;
+  margin: 5vh 0vw 5vh 4vw;
+  height: 5vh;
+  width: 20vw;
+  border-radius: 3px;
+  padding-left: 2%;
+  background-color: #44434338;
+  color: rgba(255, 255, 255, 0.54);
+  outline: none;
+  font-size: 23px;
+  backdrop-filter: blur(15px);
+}
+
+
+
+/* SLIDER                     */
+
+
+.homeSlider{
+  height: 100vh;
+  width: 100vw;
+  background:image;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rating {
+  font-weight: bold;
+  color:yellow;
+}
+
+.logo img{
+  height: 29px;
+}
+
+@media only screen and (max-width: 600px) {
+  .box{
+    width: 100px;
+    height: 150px;
+  }
+}
