@@ -5,6 +5,10 @@ body{
   background-color: #272727;
 }
 
+body::-webkit-scrollbar{
+  width: 0px;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -14,7 +18,8 @@ nav {
 }
 
 .main{
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .homeSlider{
@@ -52,15 +57,10 @@ nav {
 }
 
 
-.tilesContainer {
-  background-color: #272727;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding-left: 25%;
-  padding-right:1%;
-  margin-right: 0;
-  margin-top: 100vh;
+.TilesContainer {
+ display: grid;
+ grid-template-columns: repeat(auto-fill);
+ grid-gap: 1rem;
 }
 
 * {
@@ -98,10 +98,13 @@ nav {
   /* overflow: hidden; */
   overflow: scroll;
   padding: 5px;
-  backdrop-filter: blur(13px);
+  backdrop-filter: blur(20px);
   border-radius: 3px;
   
 }
+
+.overlay::-webkit-scrollbar{ display:none}
+
 
 #moviebox {
   position: relative;
