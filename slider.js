@@ -3,44 +3,74 @@ const slide=document.querySelector(".slides")
 const nxtBtn=document.getElementById("nxtBtn")
 const prBtn=document.getElementById("prevBtn")
 const interval=2000;
+const IMGPAT = "https://image.tmdb.org/t/p/w1280";
 
 let slides=document.querySelectorAll(".slide")
 let slideId=null;
+let firstClone;
+let lastClone;
 
 let index=1
 
-const firstClone=slides[0].cloneNode(true);
+const showTrending = (trendingResults) => {
+    return new Promise((resolve) => {
+        const slideImages = document.getElementById("slideimages");
 
-const lastClone=slides[slides.length-1].cloneNode(true);
+        const imageElements = slideImages.querySelectorAll(".slide img");
 
+        imageElements.forEach((imgElement, index) => {
+            if (trendingResults[index]) {
+                const result = trendingResults[index];
+                const imagePath = result.poster_path ? IMGPAT + result.poster_path : "./missing-image.jpg";
+                imgElement.src = imagePath;
+                imgElement.alt = result.title;
+            }
+        });
 
+        // Clone and append the slides after they have been loaded
+        slides = document.querySelectorAll(".slide");
+        firstClone = slides[0].cloneNode(true);
+        lastClone = slides[slides.length - 1].cloneNode(true);
+        firstClone.id = 'first-clone';
+        lastClone.id = 'last-clone';
+        slide.append(firstClone);
+        slide.prepend(lastClone);
 
-firstClone.id='first-clone'
-lastClone.id='last-clone'
+        // Resolve the Promise when all images have been loaded
+        slideImages.addEventListener('load', resolve);
+    });
+};
+const getTrending= async()=>{
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOTVhYWRjMTYzMzU0OWU0NWM2N2U3OTZiZTA5M2Y3ZSIsInN1YiI6IjY1MDIxZDVhZTBjYTdmMDBhZTNmZWQ1NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XoGGNVylLERyAL7o4cGzraF4VJI9TeYbUWpNKtu2WpQ'
+        }
+      };
+      
 
-slide.append(firstClone)
-slide.prepend(lastClone)
+    try {
+        const trendingResponse = await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options);
+        const trendingResponseData = await trendingResponse.json();
+        const firstFourTrending= trendingResponseData.results.slice(0,4);
+        await showTrending(firstFourTrending);
+        console.log(firstFourTrending);
+        console.log("Printed");
 
-// const slides = document.querySelectorAll(".slide");
-
-// if (slides.length > 0) {
-//   const firstClone = slides[0].cloneNode(true);
-//   console.log("slidelength");
-//   console.log(slides.length - 1);
-//   const lastClone = slides[slides.length - 1].cloneNode(true);
-
-//   console.log("last clone added");
-
-//   firstClone.id = 'first-clone';
-//   lastClone.id = 'last-clone';
-
-//   slide.append(firstClone);
-//   slide.prepend(lastClone);
-
-//   // Rest of your code...
-// } else {
-//   console.error("No slides found.");
-// }
+        // slides=document.querySelectorAll(".slide");
+        //  firstClone=slides[0].cloneNode(true);
+        //  lastClone=slides[slide.length-1].cloneNode(true);
+        // firstClone.id='first-clone';
+        // lastClone.id='last-clone';
+        // slide.append(firstClone);
+        // slide.prepend(lastClone);
+        startSlide();
+      } catch (error) {
+        console.log("Error fetching trending movies", error);
+      }
+      
+}
 
 
 const slideWidth=slides[index].clientWidth;
@@ -55,6 +85,10 @@ const startSlide=()=>{
 
 slide.addEventListener('transitionend',()=>{
     slides=getSlides();
+    if(!slides[index]) {
+        console.error('No slide at index', index, 'Slides:', slides);
+        return;
+    }
     if(slides[index].id===firstClone.id)
     {
         slide.style.transition='none';
@@ -67,7 +101,6 @@ slide.addEventListener('transitionend',()=>{
         index=slides.length-2;
         slide.style.transform=`translateX(${-slideWidth*index}px)`
     }
-  
 });
 
 const moveToNextSlide=()=>{
@@ -98,4 +131,7 @@ slideContainer.addEventListener('mouseleave',startSlide);
 
 nxtBtn.addEventListener('click',moveToNextSlide);
 prBtn.addEventListener('click',moveToPrevSlide);
+getTrending();
 startSlide();
+
+
