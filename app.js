@@ -4,36 +4,6 @@ const SEARCHAPI = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5
 const movieBox = document.querySelector("#moviebox");
 
 
-
-
-// const getTrending= async()=>{
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//           accept: 'application/json',
-//           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOTVhYWRjMTYzMzU0OWU0NWM2N2U3OTZiZTA5M2Y3ZSIsInN1YiI6IjY1MDIxZDVhZTBjYTdmMDBhZTNmZWQ1NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XoGGNVylLERyAL7o4cGzraF4VJI9TeYbUWpNKtu2WpQ'
-//         }
-//       };
-      
-//     //   fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
-//     //     .then(response => response.json())
-//     //     .then(response => console.log(response))
-//     //     .catch(err => console.error(err));
-
-//     try {
-//         const trendingResponse = await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options);
-//         const trendingResponseData = await trendingResponse.json();
-//         const firstFourTrending= trendingResponseData.results.slice(0,4);
-//         showTrending(firstFourTrending);
-//         console.log(firstFourTrending);
-//         console.log("Printed");
-//         // startSlide();
-//       } catch (error) {
-//         console.log("Error fetching trending movies", error);
-//       }
-      
-// }
-
 const getMovies = async (url) => {
     try {
         const response = await fetch(url);
@@ -78,63 +48,6 @@ const showMovies = (results) => {
         movieBox.appendChild(box);
     });
 };
-
-// const showTrending = (trendingResults) => {
-//     const slideImages = document.getElementById("slideimages"); // Assuming you have an element with this ID
-
-//     const imageElements = slideImages.querySelectorAll(".slide img");
-
-//     imageElements.forEach((imgElement, index) => {
-//         const result = trendingResults[index];
-//         const imagePath = result.poster_path ? IMGPATH + result.poster_path : "./missing-image.jpg"; // Correct the missing image path
-//         imgElement.src = imagePath;
-//         imgElement.alt = result.title; // Set the alt attribute
-//     });
-// };
-
-// const showTrending=(trendingResults) =>{
-//     slideimages.innerHTML="";
-//     trendingResults.forEach(
-//         async(result)=>{
-//             const imagePath=result.poster_path?IMGPATH+result.poster_path:"./missing-image";
-//         const slide=document.createElement("div");
-//         slide.classList.add("slide");
-//         slide.innerHTML=`
-//            <img src="${imagePath}" alt=".img/cherry.jpg" />
-//         `;
-//         slideimages.appendChild(slide);
-//         }
-    
-//     );
-// };
-
-// const showTrending = async (trendingResults) => {
-//     slideimages.innerHTML = "";
-
-//     for (const result of trendingResults) {
-//         const imagePath = result.poster_path ? IMGPATH + result.poster_path : "./missing-image";
-//          console.log(result);
-//         try {
-//             const image = new Image();
-//             image.src = imagePath;
-            
-//             await image.decode(); // Wait for the image to load and decode
-
-//             const slide = document.createElement("div");
-//             slide.classList.add("slide");
-//             slide.innerHTML = `
-//                 <img src="${imagePath}" alt="Image not found" />
-//             `;
-//             slideimages.appendChild(slide);
-//             console.log("child added");
-//         } catch (error) {
-//             console.error("Error loading image:", error);
-//             // Handle the error, e.g., display a placeholder image
-//         }
-//     }
-// };
-
-
 
 const searchMovies = (query) => {
     const url = SEARCHAPI + query;

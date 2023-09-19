@@ -2,7 +2,7 @@ const slideContainer=document.querySelector(".container");
 const slide=document.querySelector(".slides")
 const nxtBtn=document.getElementById("nxtBtn")
 const prBtn=document.getElementById("prevBtn")
-const interval=2000;
+const interval=4000;
 const IMGPAT = "https://image.tmdb.org/t/p/w1280";
 
 let slides=document.querySelectorAll(".slide")
