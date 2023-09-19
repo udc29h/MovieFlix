@@ -9,7 +9,7 @@ let slides=document.querySelectorAll(".slide")
 let slideId=null;
 let firstClone;
 let lastClone;
-
+     
 let index=1
 
 const showTrending = (trendingResults) => {
