@@ -2,7 +2,7 @@ body{
   overflow-x: hidden;
   height: fit-content;
   width: 100vw;
-  background-color: #272727;
+  background-color: #000000;
 }
 
 body::-webkit-scrollbar{
@@ -71,6 +71,7 @@ nav {
 .box {
   overflow: hidden;
   position: relative;
+  transition: all 0.4s ease-out;
   /* border: 2px solid red; */
   /* margin: 5px; */
 }
@@ -84,9 +85,7 @@ nav {
   height: 100px;
   z-index: 99;
   top: 0;
-  transition-delay: 0s;
-  transition-timing-function: ease-out;
-  transition-duration: 300ms;
+
 }
 
 .overlay {
@@ -101,6 +100,9 @@ nav {
   backdrop-filter: blur(10px);
   border-radius: 3px;
   box-shadow: inset 2em 1em 4pc rgba(255, 0, 0, 0.6);
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+  transition-duration: 300ms;
   
 }
 
@@ -147,13 +149,14 @@ nav {
   row-gap: 2rem;
   column-gap: 1rem;
   /* border: 2px solid red; */
-  padding: 0 5vw 0 5vw;
+  padding: 10vh 5vw 0 5vw;
+
 }
 
 .box:hover{
   scale: 1.2;
   z-index: 20;
-  transition: all 0.4s ease-out;
+  
 }
 
 /* SLIDER                     */

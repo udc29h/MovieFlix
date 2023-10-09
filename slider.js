@@ -24,6 +24,21 @@ const showTrending = (trendingResults) => {
                 const imagePath = result.poster_path ? IMGPAT + result.poster_path : "./missing-image.jpg";
                 imgElement.src = imagePath;
                 imgElement.alt = result.title;
+
+                const slideOverlay = document.createElement("div");
+                slideOverlay.classList.add("slide-overlay");
+
+                const trendingIndex = document.createElement("h6");
+                trendingIndex.classList.add("trendIndex");
+                trendingIndex.innerHTML = `#${index + 1} <span>Spotlight<span>`;
+
+                const slideTitle = document.createElement("h3");
+                slideTitle.classList.add("slide-title");
+                slideTitle.innerHTML = `<strong>${result.title}</strong>`;
+
+                slideOverlay.appendChild(trendingIndex);
+                slideOverlay.appendChild(slideTitle);
+                imgElement.parentNode.appendChild(slideOverlay);
             }
         });
 
