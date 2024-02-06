@@ -3,13 +3,12 @@ const slide=document.querySelector(".slides")
 const nxtBtn=document.getElementById("nxtBtn")
 const prBtn=document.getElementById("prevBtn")
 const interval=4000;
-const IMGPAT = "https://image.tmdb.org/t/p/w1280";
+const IMGPAT = "https://image.tmdb.org/t/p/original";
 
 let slides=document.querySelectorAll(".slide")
 let slideId=null;
 let firstClone;
 let lastClone;
-     
 let index=1
 
 const showTrending = (trendingResults) => {
@@ -21,7 +20,7 @@ const showTrending = (trendingResults) => {
         imageElements.forEach((imgElement, index) => {
             if (trendingResults[index]) {
                 const result = trendingResults[index];
-                const imagePath = result.poster_path ? IMGPAT + result.poster_path : "./missing-image.jpg";
+                const imagePath = result.backdrop_path ? IMGPAT + result.backdrop_path : "./missing-image.jpg";
                 imgElement.src = imagePath;
                 imgElement.alt = result.title;
 
@@ -34,7 +33,8 @@ const showTrending = (trendingResults) => {
 
                 const slideTitle = document.createElement("h3");
                 slideTitle.classList.add("slide-title");
-                slideTitle.innerHTML = `<strong>${result.title}</strong>`;
+                slideTitle.innerHTML = `<strong>${result.title}</strong>
+                `;
 
                 slideOverlay.appendChild(trendingIndex);
                 slideOverlay.appendChild(slideTitle);

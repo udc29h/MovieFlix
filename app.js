@@ -15,6 +15,7 @@ const getMovies = async (url) => {
     try {
         const response = await fetch(url);
         const data = await response.json();
+        console.log(data);
         showMovies(data.results);
     } catch (error) {
         console.log("Error fetching movies:", error);
