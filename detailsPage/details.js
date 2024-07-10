@@ -28,6 +28,7 @@ const getMovieTrailers = async (id) => {
 const getComments = async (movieId) => {
     try {
         const response = await fetch(`http://localhost:5000/comments/${movieId}`);
+        console.log("got the response")
         const data = await response.json();
         return data;
     } catch (error) {
@@ -38,7 +39,7 @@ const getComments = async (movieId) => {
 
 const postComment = async (movieId, name, comment) => {
     try {
-        const response = await fetch('https://probable-space-zebra-r547jqggw65fp67p-5000.app.github.dev/comments', {
+        const response = await fetch('http://localhost:5000/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ movieId, name, comment })
@@ -81,28 +82,38 @@ const showMovieDetails = async (movie) => {
                 <h4>Release Date: ${movie.release_date}</h4>
             </div>
         </div>
-        <div class="trailers">
-            <h3>Trailers:</h3>
-            <div id="trailer-container">
-                ${trailerHTML}
+        <div class="trailer-comments">
+            <div class="trailers">
+                <h3>Trailers:</h3>
+                <div id="trailer-container">
+                    ${trailerHTML}
+                </div>
+                <div class="trailer-buttons">
+                    <button id="prev-trailer">Previous</button>
+                    <button id="next-trailer">Next</button>
+                </div>
             </div>
-            <div class="trailer-buttons">
-                <button id="prev-trailer">Previous</button>
-                <button id="next-trailer">Next</button>
+            
+                <div class="comments-section">
+
+                <div class="add-comment">
+                    <h4>Add a Comment</h4>
+                    <input type="text" id="comment-name" placeholder="Your Name" required>
+                    <textarea id="comment-text" placeholder="Your Comment" required></textarea>
+                    <button id="submit-comment">Submit</button>
+                </div>
+
+                <h3>Comments:</h3>
+                <div id="comments-container">
+                    ${commentsHTML}
+                </div>
+
             </div>
         </div>
-        <div class="comments-section">
-            <h3>Comments:</h3>
-            <div id="comments-container">
-                ${commentsHTML}
-            </div>
-            <div class="add-comment">
-                <h4>Add a Comment</h4>
-                <input type="text" id="comment-name" placeholder="Your Name" required>
-                <textarea id="comment-text" placeholder="Your Comment" required></textarea>
-                <button id="submit-comment">Submit</button>
-            </div>
-        </div>
+
+
+
+
     `;
 
     let currentTrailerIndex = 0;
