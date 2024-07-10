@@ -1,5 +1,6 @@
 const API_KEY = "04c35731a5ee918f014970082a0088b1";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
+const API_BASE_URL="https://movie-flix-wheat.vercel.app/"
 
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
@@ -27,7 +28,7 @@ const getMovieTrailers = async (id) => {
 
 const getComments = async (movieId) => {
     try {
-        const response = await fetch(`http://localhost:5000/comments/${movieId}`);
+        const response = await fetch(`${API_BASE_URL}/comments/${movieId}`);
         console.log("got the response")
         const data = await response.json();
         return data;
@@ -39,7 +40,7 @@ const getComments = async (movieId) => {
 
 const postComment = async (movieId, name, comment) => {
     try {
-        const response = await fetch('http://localhost:5000/comments', {
+        const response = await fetch(`${API_BASE_URL}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ movieId, name, comment })
