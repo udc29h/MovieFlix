@@ -44,7 +44,7 @@ const showMovies = (results) => {
         box.classList.add("box");
         box.innerHTML = `
             <img src="${imagePath}" alt="" />
-            <div class="overlay">
+            <div class="overlay" onClick={}>
                 <div class="title">
                     <h3>${result.original_title}</h3>
                     <span class="rating">${result.vote_average}</span>
@@ -53,6 +53,9 @@ const showMovies = (results) => {
                 <p>${genres.join(", ")}</p>
             </div>
         `;
+        box.addEventListener("click",()=>{
+            window.location.href=`detailsPage/details.html?id=${result.id}`;
+        })
         movieBox.appendChild(box);
     });
 };
