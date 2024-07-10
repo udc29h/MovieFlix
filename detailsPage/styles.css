@@ -1,0 +1,60 @@
+.movie-detail-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+
+.movie-detail-box img {
+    max-width: 300px;
+    margin-right: 20px;
+}
+
+.movie-info {
+    max-width: 600px;
+}
+
+.movie-info h2 {
+    margin-top: 0;
+}
+
+.movie-info h3, .movie-info h4 {
+    margin: 10px 0;
+}
+
+.trailers {
+    margin-top: 20px;
+}
+
+.trailer {
+    margin-bottom: 20px;
+}
+
+.trailer h4 {
+    margin: 0 0 10px 0;
+}
+
+.trailer iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment {
+    margin-bottom: 10px;
+}
+
+.add-comment {
+    margin-top: 20px;
+}
+
+.add-comment input,
+.add-comment textarea {
+    width: 100%;
+    margin-bottom: 10
+;}
