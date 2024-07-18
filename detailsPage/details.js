@@ -27,7 +27,7 @@ const getMovieTrailers = async (id) => {
 
 const getComments = async (movieId) => {
     try {
-        const response = await fetch(`http://localhost:5000/comments/${movieId}`);
+        const response = await fetch(`https://mf-8cnj.onrender.com/comments/${movieId}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -38,7 +38,7 @@ const getComments = async (movieId) => {
 
 const postComment = async (movieId, name, comment) => {
     try {
-        const response = await fetch('https://probable-space-zebra-r547jqggw65fp67p-5000.app.github.dev/comments', {
+        const response = await fetch('https://mf-8cnj.onrender.com/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ movieId, name, comment })
