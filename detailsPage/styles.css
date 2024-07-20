@@ -1,60 +1,255 @@
-.movie-detail-box {
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Styles for the entire movie details section */
+#movie-details {
     display: flex;
-    flex-wrap: wrap;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background: #333;
+    position: relative; /* Needed to position child elements absolutely */
+}
+
+/* Background layer */
+
+
+/* Content wrapper */
+.content-wrapper {
+    position: relative;
+    z-index: 1; /* Ensure it's above the background */
+    width: 100%;
+    display: flex;} 
+
+/* Movie detail box styles */
+.movie-detail-box {
+    flex-basis: 30%;
     padding: 20px;
-    border: 1px solid #ccc;
-    margin: 20px;
+    border-right: 1px solid #ccc;
+    /* background: rgba(255, 255, 255, 0.8);  */
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .movie-detail-box img {
-    max-width: 300px;
-    margin-right: 20px;
+    max-width: 100%;
+    height: auto;
+    max-height: 70vh;
+    margin-bottom: 20px;
 }
 
 .movie-info {
-    max-width: 600px;
+    max-width: 100%;
+    color: #fff;
 }
 
 .movie-info h2 {
     margin-top: 0;
+    color:rgb(250, 250, 250)
 }
 
 .movie-info h3, .movie-info h4 {
     margin: 10px 0;
 }
 
-.trailers {
-    margin-top: 20px;
+.movie-info span{
+    color:yellow;
+    font-size: xx-large;
 }
 
-.trailer {
+/* Styles for trailers section */
+.trailers {
+    flex-basis: 50%;
+    background: #333;
+    box-sizing: border-box;
+    overflow: auto;
+    padding:10px 12px 0px 12px;
+
+}
+
+.trailers h3 {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
     margin-bottom: 20px;
 }
 
+#trailer-container {
+
+    overflow: hidden;
+    position: relative;
+    border-radius: 14px;
+}
+
+.trailer {
+    display: flex;
+    min-width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
 .trailer h4 {
-    margin: 0 0 10px 0;
-}
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2em;
 
-.trailer iframe {
-    width: 100%;
-    max-width: 560px;
-    height: 315px;
-}
-
-.comments-section {
-    margin-top: 20px;
-}
-
-.comment {
     margin-bottom: 10px;
 }
 
-.add-comment {
+.trailer iframe {
+    border-radius: 10px;
+    border: none;
+    width: 100vw;
+}
+
+.trailer-buttons {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
-.add-comment input,
-.add-comment textarea {
+.trailer-buttons button {
+    background-color:red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 800;
+    font-family:sans-serif;
+}
+
+.trailer-buttons button:hover {
+    background-color: rgb(186, 0, 0);
+}
+
+.trailer-buttons #prev-trailer {
+    margin-right: 10px;
+}
+
+.trailer-buttons #next-trailer {
+    margin-left: 10px;
+}
+
+.overview{
+    background-color: #ffffff;
+    margin-top: 20px;
+    padding:10px;
+    border-radius:5px;
+    z-index: 2;
+    backdrop-filter: blur(22px);
+ 
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/* Styles for comments section */
+.comments-section {
+    flex-basis: 30%;
+    background: #333; /* Semi-transparent background */
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-left:1px solid white;
+    position: relative;
+}
+
+.comments-section h3 {
+    margin-top: 0;
+}
+
+/* Styles for individual comments */
+.comment {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+.comment p strong {
+    color: #333;
+}
+
+/* Styles for adding a new comment */
+.add-comment {
+    margin-bottom: 20px;
+    border-bottom:1px solid #ddd;
+    padding: 10px;
+    background-color: black;
+    position: sticky;
+    top: 0;
     width: 100%;
-    margin-bottom: 10
-;}
+}
+#comments-container{
+   
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.comment{
+    border-radius:0px 0px 0px 30px;
+}
+.add-comment h4 {
+  
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#input-section {
+    margin-bottom: 10px;
+}
+
+#comment-name, #comment-text {
+    width: calc(100% - 2px); /* Adjust width to account for padding */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#comment-text {
+    height: 100px;
+    resize: vertical;
+}
+
+#submit-comment {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submit-comment:hover {
+    background-color: rgb(186, 0, 0);
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+    #movie-details {
+        flex-direction: column;
+    }
+
+    .movie-detail-box, .trailers, .comments-section {
+        flex-basis: auto;
+        height: auto;
+    }
+
+    .trailers, .comments-section {
+        border-top: 1px solid #ccc;
+    }
+}
