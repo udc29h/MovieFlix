@@ -27,7 +27,7 @@ const getMovieTrailers = async (id) => {
 
 const getComments = async (movieId) => {
     try {
-        const response = await fetch(`https://mf-8cnj.onrender.com/comments/${movieId}`);
+        const response = await fetch(`http://localhost:4000/comments/${movieId}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -38,7 +38,7 @@ const getComments = async (movieId) => {
 
 const postComment = async (movieId, name, comment) => {
     try {
-        const response = await fetch('https://mf-8cnj.onrender.com/comments', {
+        const response = await fetch('http://localhost:4000/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ movieId, name, comment })
@@ -75,7 +75,51 @@ const updateCommentTimestamps = () => {
     });
 };
 
+const getMovieRating = async (id) => {
+    try {
+        const response = await fetch(`http://localhost:4000/ratings/${id}`);
+        const data = await response.json();
+        return data.averageRating;
+    } catch (error) {
+        console.log("Error fetching movie rating:", error);
+        return null;
+    }
+};
 
+const postRating = async (movieId, rating) => {
+    const storagekey=`movie_${movieId}_rating`;
+    if(localStorage.getItem(storagekey)){
+        console.log("You've already rated this movie");
+        return null;
+    }
+    try {
+        const response = await fetch('http://localhost:4000/ratings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ movieId, rating })
+        });
+        const data = await response.json();
+        if(data.averageRating){
+            localStorage.setItem(storagekey,rating);
+        }
+        return data.averageRating
+    } catch (error) {
+        console.log("Error posting rating:", error);
+        return null;
+    }
+};
+
+const highlightStars = (rating) => {
+    const stars = document.querySelectorAll('.stars span');
+    stars.forEach(star => {
+        const starValue = star.getAttribute('data-value');
+        if (starValue <= rating) {
+            star.style.color = '#FFD700'; // gold color
+        } else {
+            star.style.color = '#E5E5E5'; // default color
+        }
+    });
+};
 
 const showMovieDetails = async (movie) => {
     const movieDetails = document.getElementById("movie-details");
@@ -84,14 +128,17 @@ const showMovieDetails = async (movie) => {
 
     movieDetails.appendChild(loadingIcon);
 
-    
+    // Set the background image for the overview section
+    const overviewElement = document.querySelector('.overview');
+    if (overviewElement) {
+        overviewElement.style.setProperty('--bg-image', `url(${imagePath})`);
+    }
 
     try {
         const imagePath = movie.poster_path ? IMGPATH + movie.poster_path : "./missing-image";
         const trailers = await getMovieTrailers(movie.id);
         const comments = await getComments(movie.id);
-
-        // Set background image with blur effect
+        const averageRating = await getMovieRating(movie.id);
 
         const trailerHTML = trailers.map((trailer, index) => `
             <div class="trailer" id="trailer-${index}" style="${index === 0 ? '' : 'display:none;'}">
@@ -106,35 +153,48 @@ const showMovieDetails = async (movie) => {
             </div>
         `).join("");
 
+        const ratingHTML = `
+        <div class="rating-container" style="user-select: none;">
+            <div class="rating-score">${averageRating ? averageRating : 'N/A'}</div>
+            <div class="stars">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <div class="user-rating">Your rating: <span class="current-rating">${averageRating ? averageRating : 'N/A'}</span></div>
+        </div>
+    `;
+
         movieDetails.innerHTML = `
             <div class="movie-detail-box">
                 <img src="${imagePath}" alt="${movie.title}" />
+                <div class="rating">
+                ${ratingHTML}
+            </div>
+            </div>
+            <div class="trailers">
+                <div id="trailer-container">
+                    ${trailerHTML}
+                </div>     
+                <div class="trailer-buttons">
+                    <button id="prev-trailer">Prev</button>
+                    <button id="next-trailer">Next</button>
+                </div>
                 <div class="movie-info">
                     <h2>${movie.title}</h2>
-                    <h3>Genres: ${movie.genres.map(genre => genre.name).join(", ")}</h3>
-                    <h4>Rating: <span>${movie.vote_average}<span></h4>
+                    <h3>${movie.genres.map(genre => genre.name).join(" | ")}</h3>
+                    <h4>IMDB: <span>${movie.vote_average}<span></h4>
                     <h4>Release Date: ${movie.release_date}</h4>
                 </div>
-            </div>
-            
-            <div class="trailers">
-                   
-                    <div id="trailer-container">
-                        ${trailerHTML}
-                    </div>
-                    <div class="trailer-buttons">
-                        <button id="prev-trailer">New</button>
-                        <button id="next-trailer">Prev</button>
-                    </div>
-                
-                    <div class="overview">
+               
+                <div class="overview" style="--bg-image: url(${imagePath});">
                     <h2>Overview</h2>
                     <p>${movie.overview}</p>
-                    </div>
                 </div>
             </div>
             <div class="comments-section">
-            
                 <div class="add-comment">
                     <h4>Add a Comment</h4>
                     <div id="input-section">
@@ -174,11 +234,25 @@ const showMovieDetails = async (movie) => {
             }
         });
 
+        // Add event listener for star rating
+        const starsContainer = document.querySelector('.stars');
+        starsContainer.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('star')) {
+                const rating = e.target.getAttribute('data-value');
+                const newAverageRating = await postRating(movie.id, rating);
+                if (newAverageRating) {
+                    document.querySelector('.current-rating').textContent = newAverageRating;
+                    highlightStars(rating);
+                }
+            }
+        });
+
+        highlightStars(averageRating);
+
         // Add event listener for comment submission
         document.getElementById('submit-comment').addEventListener('click', async () => {
             const name = document.getElementById('comment-name').value;
             const comment = document.getElementById('comment-text').value;
-
             if (name && comment) {
                 const newComment = await postComment(movie.id, name, comment);
                 if (newComment) {
@@ -192,15 +266,14 @@ const showMovieDetails = async (movie) => {
                     document.getElementById('comment-name').value = '';
                     document.getElementById('comment-text').value = '';
                 }
-            } else {
-                alert('Please enter both name and comment.');
             }
         });
 
-        // Update comment timestamps every minute
-        setInterval(updateCommentTimestamps, 60000);
+        updateCommentTimestamps();
+        setInterval(updateCommentTimestamps, 60000); // Update comment timestamps every minute
+
     } catch (error) {
-        console.log("Error fetching movie details:", error);
+        console.log("Error showing movie details:", error);
     }
 };
 
