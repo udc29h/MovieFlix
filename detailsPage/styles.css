@@ -36,9 +36,9 @@ h2, h3, h4 {
 .movie-detail-box {
     flex-basis: 30%;
     padding: 10px;
-    padding-right: 0;
     box-sizing: border-box;
     overflow: hidden;
+    overflow-y:scroll;
     display: flex;
     flex-direction: column;
 }
@@ -294,10 +294,25 @@ h2, h3, h4 {
     }
 }
 
+.rating {
+    display: flex;
+    column-gap: 1rem;
+}
+
+#wishlistBtn{
+    font-family: sans-serif;
+    font-weight: 900;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 10px;
+}
+
 .rating-container {
     background-color: #464646;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+    margin-top: 0px;
     border-radius: 10px;
     text-align: center;
     color: #E5E5E5;
@@ -333,4 +348,45 @@ h2, h3, h4 {
 .movie-info h3{
     color:#999999;
     text-align: start;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #141414; /* Dark background */
+    padding: 10px 20px; /* Padding for the navbar */
+}
+
+.logo img {
+    height: 20px; /* Adjust logo height */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    margin-left: 20px; /* Space between links */
+    font-family: 'Open Sans', sans-serif; /* Font family */
+    font-weight: 600; /* Font weight */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-links a:hover {
+    color: #e50914; /* Change color on hover */
+}
+
+/* Optional: Add a responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items on smaller screens */
+    }
+    .nav-links {
+        margin-top: 10px; /* Space between logo and links */
+    }
 }

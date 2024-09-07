@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Details</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>My Wishlist</title>
+    <link rel="stylesheet" href="../custom.css">
+    <link rel="stylesheet" href="wishlist.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -18,26 +20,12 @@
             </div>
         </div>
     </nav>
-    <div id="movie-details"></div>
-    <script src="details.js"></script>
+
+    <main>
+        <h1>My Wishlist</h1>
+        <div id="wishlistContainer" class="wishlist-grid"></div>
+    </main>
+
+    <script src="wishlist.js"></script>
 </body>
 </html>
-
-<style>
-    /* Hide scrollbar for Chrome, Safari and Opera */
-::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-* {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-/* Ensure the body still scrolls */
-html, body {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
-}
-</style>

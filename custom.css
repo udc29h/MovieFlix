@@ -102,9 +102,9 @@ body{
 #search {
   border: none;
   margin: 5vh 0vw 5vh 4vw;
-  height: 5vh;
+  height: 4vh;
   width: 20vw;
-  border-radius: 3px;
+  border-radius: 13px;
   padding-left: 2%;
   background-color: #44434338;
   color: rgba(255, 255, 255, 0.54);
@@ -162,3 +162,40 @@ body{
   }
 }
 
+.nav-links a{
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 900;
+  color:#aaa;
+
+}
+
+.logout-icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+#logoutLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+
+.wishlist-icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+#wishlistLink{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+ 

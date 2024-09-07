@@ -2,6 +2,7 @@ const API_KEY = "04c35731a5ee918f014970082a0088b1";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 const urlParams = new URLSearchParams(window.location.search);
+console.log(urlParams)
 const movieId = urlParams.get('id');
 
 const getMovieDetails = async (id) => {
@@ -121,6 +122,30 @@ const highlightStars = (rating) => {
     });
 };
 
+const addToWishlist = async (movieId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please log in to add to wishlist');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:4000/wishlist/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify({ movieId })
+        });
+        const data = await response.json();
+        alert(data.message);
+    } catch (error) {
+        console.error('Error adding to wishlist:', error);
+    }
+};
+
+
 const showMovieDetails = async (movie) => {
     const movieDetails = document.getElementById("movie-details");
     const loadingIcon = document.createElement("div");
@@ -167,11 +192,17 @@ const showMovieDetails = async (movie) => {
         </div>
     `;
 
+ 
+
+
+   
+
         movieDetails.innerHTML = `
             <div class="movie-detail-box">
                 <img src="${imagePath}" alt="${movie.title}" />
                 <div class="rating">
                 ${ratingHTML}
+                <button id="wishlistBtn" class="wishlist-btn">Add to Wishlist</button>
             </div>
             </div>
             <div class="trailers">
@@ -233,6 +264,8 @@ const showMovieDetails = async (movie) => {
                 showTrailer(currentTrailerIndex);
             }
         });
+
+        document.getElementById('wishlistBtn').addEventListener('click', () => addToWishlist(movie.id));
 
         // Add event listener for star rating
         const starsContainer = document.querySelector('.stars');
