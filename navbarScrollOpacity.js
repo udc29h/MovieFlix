@@ -1,15 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementsByClassName('navbar');
-    const maxOpacity = 0.9; // Adjust this value to set the maximum opacity you want
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    
+    if (!navbar) {
+        console.error('Navbar element not found');
+        return;
+    }
 
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-        const navbarHeight = navbar.clientHeight;
-
-        // Calculate the opacity based on the scroll position and navbar height
-        const opacity = 1 - (scrollPos / navbarHeight);
-
-        // Set the new opacity for the navigation bar
-        navbar.style.opacity = Math.min(opacity, maxOpacity);
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.style.opacity = '0.8';
+        } else {
+            navbar.style.opacity = '1';
+        }
     });
 });

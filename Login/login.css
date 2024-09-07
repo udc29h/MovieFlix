@@ -1,0 +1,76 @@
+body {
+    background-color: #141414; /* Dark background */
+    color: #ffffff; /* White text */
+    font-family: 'Open Sans', sans-serif; /* Font family */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+.container {
+    background-color: #2f2f2f; /* Light dark background for the form */
+    padding: 40px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    width: 300px; /* Fixed width */
+    text-align: center; /* Center text */
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif; /* Different font for the heading */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+label {
+    display: block; /* Block display for labels */
+    margin-bottom: 5px; /* Space below label */
+    font-weight: 600; /* Bold text */
+}
+
+input {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside input */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #444; /* Input background */
+    color: #ffffff; /* Input text color */
+    font-size: 16px; /* Font size */
+}
+
+input::placeholder {
+    color: #aaa; /* Placeholder text color */
+}
+
+.btn {
+    background-color: #e50914; /* Button color */
+    color: white; /* Button text color */
+    padding: 10px; /* Padding inside button */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.btn:hover {
+    background-color: #ff0a16; /* Darker red on hover */
+}
+
+p {
+    margin-top: 20px; /* Space above paragraph */
+}
+
+a {
+    color: #e50914; /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

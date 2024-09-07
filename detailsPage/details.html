@@ -7,7 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <a href="/index.html"><img src="https://fontmeme.com/permalink/230708/5cec73c7b50ba397b220988778596691.png" alt="netflix-font" border="0"></a>
+            </div>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="#" id="logoutLink">Logout</a>
+            </div>
+        </div>
+    </nav>
     <div id="movie-details"></div>
     <script src="details.js"></script>
 </body>
 </html>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Ensure the body still scrolls */
+html, body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+}
+</style>

@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie App</title>
     <link rel="stylesheet" href="custom.css">
     <link rel="stylesheet" href="slider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="mainbody">
+    <header>
+        <h1 class="app-title">
+            <span class="highlight">M</span>ovie App
+        </h1>
+    </header>
     <nav>
         <div class="navbar">
             <div class="logo">
@@ -15,6 +21,15 @@
             </div>
             <div class="search-bar">
                 <input type="search" id="search" autocomplete="off" placeholder="Search...">
+            </div>
+            <div class="nav-links">
+                <a href="/Login/login.html" id="loginLink">Login</a>
+                <a href="/Wishlist/wishlist.html" id="wishlistLink" style="display: none;">
+                    <img src="img/wishlist.svg" alt="Wishlist" class="wishlist-icon">
+                </a>
+                <a href="#" id="logoutLink" style="display: none;">
+                    <img src="img/logout.svg" alt="Logout" class="logout-icon">
+                </a>
             </div>
         </div>
     </nav>
@@ -37,10 +52,30 @@
         <div class="TilesContainer">
             <div class="row" id="moviebox"></div>
         </div>
-
     </div>
+
     <script src="app.js"></script>
     <script src="navbarScrollOpacity.js"></script>
     <script src="slider.js"></script>
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('token');
+        const loginLink = document.getElementById('loginLink');
+        const wishlistLink = document.getElementById('wishlistLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (token) {
+            loginLink.style.display = 'none';
+            wishlistLink.style.display = 'inline';
+            logoutLink.style.display = 'inline';
+        }
+
+        // Logout functionality
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            window.location.reload();
+        });
+    </script>
 </body>
 </html>
