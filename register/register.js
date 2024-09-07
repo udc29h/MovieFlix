@@ -4,7 +4,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('http://localhost:4000/register', {
+        const response = await fetch('https://movilist.onrender.com/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })

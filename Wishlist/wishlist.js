@@ -10,7 +10,7 @@ const API_KEY = "04c35731a5ee918f014970082a0088b1";
         }
     
         try {
-            const response = await fetch('http://localhost:4000/wishlist', {
+            const response = await fetch('https://movilist.onrender.com/wishlist', {
                 headers: { 'Authorization': token }
             });
             const data = await response.json();
@@ -58,7 +58,7 @@ const removeFromWishlist = async (event) => {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch('http://localhost:4000/wishlist/remove', {
+        const response = await fetch('https://movilist.onrender.com/wishlist/remove', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

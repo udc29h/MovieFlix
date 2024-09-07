@@ -28,7 +28,7 @@ const getMovieTrailers = async (id) => {
 
 const getComments = async (movieId) => {
     try {
-        const response = await fetch(`http://localhost:4000/comments/${movieId}`);
+        const response = await fetch(`https://movilist.onrender.com/comments/${movieId}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -39,7 +39,7 @@ const getComments = async (movieId) => {
 
 const postComment = async (movieId, name, comment) => {
     try {
-        const response = await fetch('http://localhost:4000/comments', {
+        const response = await fetch('https://movilist.onrender.com/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ movieId, name, comment })
@@ -78,7 +78,7 @@ const updateCommentTimestamps = () => {
 
 const getMovieRating = async (id) => {
     try {
-        const response = await fetch(`http://localhost:4000/ratings/${id}`);
+        const response = await fetch(`https://movilist.onrender.com/ratings/${id}`);
         const data = await response.json();
         return data.averageRating;
     } catch (error) {
@@ -94,7 +94,7 @@ const postRating = async (movieId, rating) => {
         return null;
     }
     try {
-        const response = await fetch('http://localhost:4000/ratings', {
+        const response = await fetch('https://movilist.onrender.com/ratings', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ movieId, rating })
@@ -130,7 +130,7 @@ const addToWishlist = async (movieId) => {
     }
 
     try {
-        const response = await fetch('http://localhost:4000/wishlist/add', {
+        const response = await fetch('https://movilist.onrender.com/wishlist/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
