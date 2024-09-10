@@ -11,11 +11,6 @@ const jwt=require('jsonwebtoken');
 const app = express();
 
 app.use(cors(
-    {
-        origin:'http://localhost:5500',
-        methods:['GET','POST'],
-        credentials: true
-    }
 ));
 app.use(bodyParser.json());
 
