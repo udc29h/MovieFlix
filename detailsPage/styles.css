@@ -68,7 +68,7 @@ h2, h3, h4 {
 .movie-info h3, .movie-info h4 {
     margin: 10px 0;
     font-weight: lighter;
-    color:#999999
+    color:#999999;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -305,6 +305,7 @@ h2, h3, h4 {
     padding-left: 1rem;
     padding-right: 1rem;
     border-radius: 10px;
+    width:auto;
 }
 
 .rating-container {
@@ -353,6 +354,7 @@ h2, h3, h4 {
 /* Navbar Styles */
 .navbar {
     display: flex;
+    height: 50px;
     justify-content: space-between;
     align-items: center;
     background-color: #141414; /* Dark background */
@@ -360,7 +362,7 @@ h2, h3, h4 {
 }
 
 .logo img {
-    height: 20px; /* Adjust logo height */
+    height: 60px; /* Adjust logo height */
 }
 
 .nav-links {

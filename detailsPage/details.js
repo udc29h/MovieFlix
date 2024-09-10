@@ -122,6 +122,28 @@ const highlightStars = (rating) => {
     });
 };
 
+const checkIfInWishlist=async (movieId)=>{
+    const token=localStorage.getItem('token');
+    if(!token) return false;
+    try{
+        const response=await fetch('https://movilist.onrender.com/wishlist',{
+            method:'GET',
+            headers:{
+                'Authorization':token
+            },
+        })
+        console.log("Checking for wishlist is already or not !")
+        const data= await response.json();
+        const wishlist=data.wishlist;
+        console.log(wishlist)
+        return wishlist.some(item=>item.toString()===movieId.toString())
+    }
+    catch(err){
+       console.error("Error fetching wishlist:",err)
+       return false;
+    }
+}
+
 const addToWishlist = async (movieId) => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -139,7 +161,11 @@ const addToWishlist = async (movieId) => {
             body: JSON.stringify({ movieId })
         });
         const data = await response.json();
-        alert(data.message);
+        if(response.ok){
+            const wishlistBtn=document.getElementById('wishlistBtn');
+            wishlistBtn.textContent='Added';
+            wishlistBtn.disabled=true;
+        }
     } catch (error) {
         console.error('Error adding to wishlist:', error);
     }
@@ -264,7 +290,12 @@ const showMovieDetails = async (movie) => {
                 showTrailer(currentTrailerIndex);
             }
         });
-
+        const isInWishlist=await checkIfInWishlist(movie.id);
+        const wishlistBtn=document.getElementById('wishlistBtn')
+        if(isInWishlist){
+            wishlistBtn.textContent="Added"
+            wishlistBtn.disabled=true;
+        }
         document.getElementById('wishlistBtn').addEventListener('click', () => addToWishlist(movie.id));
 
         // Add event listener for star rating

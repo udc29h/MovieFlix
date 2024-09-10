@@ -6,11 +6,16 @@ const movieBox = document.querySelector("#moviebox");
 const searchInput = document.getElementById("search");
 
 searchInput.addEventListener("click", function(event) {
-  
-    movieBox.scrollIntoView({ behavior: "smooth",block:"start", inline:"nearest" });
-  
-});
+   
+    const movieBoxPosition = movieBox.getBoundingClientRect().top + window.scrollY; 
+    const offset = 80;
+    const scrollToPosition = movieBoxPosition - offset;
 
+    window.scrollTo({
+        top: scrollToPosition,
+        behavior: "smooth" // Smooth scrolling
+    });
+});
 const getMovies = async (url) => {
     try {
         const response = await fetch(url);
