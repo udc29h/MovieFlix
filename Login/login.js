@@ -12,13 +12,13 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.json();
         if (response.ok) {
             localStorage.setItem('token', data.token);
-            alert('Login successful!');
+            // alert('Login successful!');
             window.location.href = '/index.html'; 
         } else {
             alert(`Login failed: ${data.error}`);
         }
     } catch (error) {
         console.error('Error logging in:', error);
-        alert('An error occurred during login');
+        // alert('An error occurred during login');
     }
 });

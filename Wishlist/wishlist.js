@@ -72,7 +72,7 @@ const removeFromWishlist = async (event) => {
             fetchWishlist(); // Refresh the wishlist
         } else {
             const data = await response.json();
-            alert(`Error: ${data.error}`);
+            console.log(`Error: ${data.error}`);
         }
     } catch (error) {
         console.error('Error removing movie from wishlist:', error);

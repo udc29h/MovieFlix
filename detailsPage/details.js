@@ -187,9 +187,11 @@ const showMovieDetails = async (movie) => {
 
     try {
         const imagePath = movie.poster_path ? IMGPATH + movie.poster_path : "./missing-image";
-        const trailers = await getMovieTrailers(movie.id);
-        const comments = await getComments(movie.id);
-        const averageRating = await getMovieRating(movie.id);
+        const [trailers, comments, averageRating] = await Promise.all([
+            getMovieTrailers(movie.id),
+            getComments(movie.id),
+            getMovieRating(movie.id)
+        ]);
 
         const trailerHTML = trailers.map((trailer, index) => `
             <div class="trailer" id="trailer-${index}" style="${index === 0 ? '' : 'display:none;'}">
