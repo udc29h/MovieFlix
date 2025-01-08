@@ -392,3 +392,160 @@ h2, h3, h4 {
         margin-top: 10px; /* Space between logo and links */
     }
 }
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    background: #464646;
+    border-radius: 10px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #999999;
+    border-top: 4px solid #ff0000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Shimmer effect for loading states */
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background: #464646;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 20px;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}
+
+/* Loading state for rating container */
+.rating-container.loading {
+    min-height: 150px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #464646;
+    border-radius: 10px;
+}
+
+/* Shimmer placeholder elements */
+.h-4 {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+    background: #555;
+    border-radius: 4px;
+}
+
+.w-3\/4 {
+    width: 75%;
+}
+
+.w-1\/2 {
+    width: 50%;
+}
+
+/* Loading state for trailer container */
+#trailer-container.loading {
+    min-height: 315px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #464646;
+    border-radius: 14px;
+}
+
+/* Loading state for comments */
+.comments-section .loading {
+    padding: 20px;
+}
+
+/* Loading state for comments container */
+#comments-container.loading {
+    animation: pulse 2s infinite;
+}
+
+/* Disabled states for buttons during loading */
+button:disabled {
+    background-color: #666 !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Loading state transitions */
+.rating-container,
+#trailer-container,
+#comments-container {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Keep all existing styles the same, just add these new loading-specific ones at the end */
+/* ... (rest of your existing CSS remains unchanged) ... */
+
+/* Update specific components for better loading state handling */
+.rating {
+    display: flex;
+    column-gap: 1rem;
+    min-height: 150px; /* Prevent layout shift during loading */
+}
+
+#trailer-container {
+    min-height: 315px; /* Prevent layout shift during loading */
+}
+
+.comment {
+    background: #464646;
+    color: #ffffff87;
+    padding: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    transition: opacity 0.3s ease;
+}
+
+/* Loading placeholder for comments */
+.comment-placeholder {
+    height: 80px;
+    background: #464646;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    animation: pulse 2s infinite;
+}
+
+/* Ensure loading states maintain dark theme */
+.loading-placeholder {
+    background: #464646;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Improve visibility of loading states in dark theme */
+.animate-pulse .h-4 {
+    background: #555;
+}
+
+/* Update spinner colors for better visibility */
+.spinner {
+    border-color: #999999;
+    border-top-color: #ff0000;
+}
+
+/* Maintain consistent spacing during loading */
+.movie-detail-box,
+.trailers,
+.comments-section {
+    min-height: 200px; /* Prevent collapse during loading */
+}
